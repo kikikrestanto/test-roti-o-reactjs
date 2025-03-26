@@ -6,7 +6,6 @@ import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from "@mu
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import iconBack from '../../../assets/images/back-button.png';
-import { pathnameCONFIG } from "../../../constant/pathnameConfig";
 
 const Body = styled('div')(() => ({
     backgroundImage : `url(${Backdrop})`,
@@ -46,13 +45,6 @@ const Container = styled('div')(() => ({
         width: '80%',
     }
 }));
-
-const CircleIcon = styled('div')(() => ({
-    borderRadius: '100px',
-    backgroundColor: '#C4C4C4',
-    width:'50px',
-    height: '50px',
-}))
 
 const Button = styled('div')(() => ({
     border: '1px solid #000',

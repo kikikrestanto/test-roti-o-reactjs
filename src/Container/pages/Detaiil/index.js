@@ -47,13 +47,6 @@ const Container = styled('div')(() => ({
     }
 }));
 
-const CircleIcon = styled('div')(() => ({
-    borderRadius: '100px',
-    backgroundColor: '#C4C4C4',
-    width:'50px',
-    height: '50px',
-}))
-
 const Button = styled('div')(() => ({
     border: '1px solid #000',
     borderRadius: '40px',

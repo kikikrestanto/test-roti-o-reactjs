@@ -1,10 +1,10 @@
 import React from 'react';
 import { pathnameCONFIG } from '../constant/pathnameConfig';
-import Login from '../Container/pages/Login';
-import Dashboard from '../Container/pages/Dashboard';
-import Add from '../Container/pages/Add';
-import Edit from '../Container/pages/Edit';
-import Detail from '../Container/pages/Detaiil';
+import Login from '../container/pages/Login';
+import Dashboard from '../container/pages/Dashboard';
+import Add from '../container/pages/Add';
+import Edit from '../container/pages/Edit';
+import Detail from '../container/pages/Detaiil';
 
 export const AppRoutes = [
     {
