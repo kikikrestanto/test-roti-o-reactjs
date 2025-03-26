@@ -89,7 +89,7 @@ const TextStyle = styled('div')(() => ({
     fontSize: '1em',
 }))
 
-const ErrorStyle = styled('di')(() => ({
+const ErrorStyle = styled('div')(() => ({
     color: 'red',
     fontWeight: 'bold',
     fontSize: '14px'
@@ -130,15 +130,13 @@ const Add= () => {
         try {
             const response = await serviceAddData(payload);
             const {status} = response;
-            
             if(status === 200) {
                 setSuccess(true);
-            } else if(status === 500){
-                setError(true);
-                console.error('handleError')
             }
         } catch(error) {
-            console.error(error);
+            if(error.status === 500){
+                setError(true);
+            }
         }
     }
     
@@ -284,6 +282,7 @@ const Add= () => {
                     ) : (
                         <React.Fragment>
                             <img src={IconWarning}/>
+                            <span>Nomor NIK ada yang sama</span>
                             <Button onClick={() => {
                                 setError(false);
                                 }}>

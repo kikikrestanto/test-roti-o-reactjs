@@ -3,10 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import Backdrop from '../../../assets/images/Backdrop.png';
 import { FormControl, FormControlLabel, Radio, RadioGroup, TextField } from "@mui/material";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import iconBack from '../../../assets/images/back-button.png';
 import { pathnameCONFIG } from "../../../constant/pathnameConfig";
+import { serviceGetData } from "../../../utils/api/baseApiService";
 
 const Body = styled('div')(() => ({
     backgroundImage : `url(${Backdrop})`,
@@ -87,9 +87,7 @@ const TextStyle = styled('div')(() => ({
 }))
 
 const Detail = () => {
-    const {id} = useParams();
-    console.log('id detail', id);
-    
+    const {id} = useParams();    
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nik: '',
@@ -100,7 +98,7 @@ const Detail = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await axios.post(`http://localhost:8000/api/get-data/${id}`);
+            const response = await serviceGetData(id);
             setFormData(response.data);
         } catch (error) {
             console.error(error);
@@ -115,9 +113,10 @@ const Detail = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleToDetail = (id) => {
+    const handleToEdit = () => {
         navigate(`${pathnameCONFIG.ROOT_URL_EDIT}/${id}`);
-            
+        console.log('idBtn', id);
+        
     };
     return (
         <Body>
@@ -170,20 +169,19 @@ const Detail = () => {
                     Jenis Kelamin
                 </TextForm>
                 <FormControl>
-                                    <RadioGroup
-                                        aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue="laki-laki"
-                                        name="jenis_kelamin"
-                                        onChange={handleInputChange}
-                                        disabled
-                                    >
-                                        <FormControlLabel value="perempuan" control={<Radio />} label="Perempuan" />
-                                        <FormControlLabel value="laki-laki" control={<Radio />} label="Laki Laki" />
-                                    </RadioGroup>
-                                    </FormControl>
+                    <RadioGroup
+                        defaultValue="laki-laki"
+                        name="jenis_kelamin"
+                        onChange={handleInputChange}
+                        disabled
+                        >
+                    <FormControlLabel value="perempuan" control={<Radio />} label="Perempuan" disabled/>
+                    <FormControlLabel value="laki-laki" control={<Radio />} label="Laki Laki" disabled/>
+                    </RadioGroup>
+                    </FormControl>
                 <Space space="15px"/>
                 <Button style={{backgroundColor: '#666666', border: 'none', color: '#fff'}} 
-                onClick={handleToDetail}
+                onClick={handleToEdit}
                 >
                     Edit
                 </Button>

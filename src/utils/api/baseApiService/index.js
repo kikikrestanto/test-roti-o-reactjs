@@ -9,3 +9,9 @@ export const serviceDeleteData = (payload) =>
 
 export const serviceAddData = (payload) => 
     axios.post(`${apiUrl}/add-data`, payload);
+
+export const serviceGetData = (payload) =>
+    axios.post(`${apiUrl}/get-data/${payload}`);
+
+export const serviceUpdateData = (id,payload) =>
+    axios.post(`${apiUrl}/update-data/${id}`, payload);
